@@ -17,6 +17,7 @@ const SigninPanel = async () => {
       id: user?.id,
     },
   });
+
   if (await isAuthenticated())
     return <>{dbUser!! && <UserProfilePanel user={dbUser} />}</>;
 

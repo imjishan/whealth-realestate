@@ -12,16 +12,19 @@ export async function GET() {
       id: user.id,
     },
   });
+
+  // Object literal may only specify known properties, but 'firstName' does not exist in type '(Without<UserCreateInput, UserUncheckedCreateInput> & UserUncheckedCreateInput) | (Without<...> & UserCreateInput)'. Did you mean to write 'firstname'?
+  // how to fix this?
+
   if (!dbUser) {
     await prisma.user.create({
       data: {
         id: user.id,
-        firstname: user.given_name ?? "",
-        lastname: user.family_name ?? "",
+        firstName: user.given_name ?? "",
+        lastName: user.family_name ?? "",
         email: user.email ?? "",
       },
     });
-
     return NextResponse.redirect("http://localhost:3000/");
   }
 }
